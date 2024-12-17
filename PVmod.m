@@ -4,5 +4,8 @@ function [Curr] = PVmod(Volt,Irrad,Temp,y,Rs,Rsh)
 IL = IrradianceCurrent(Temp,Irrad);
 Is1 = ReverseCurrentSTC(y);
 Is = ReverseCurrent(Is1,Temp,y);
-Curr = currentNewton(IL,0,Is,Volt,Rs,y,Temp,Rsh);
+Curr = zeros(size(Volt));
+for i= 1:1:length(Volt)
+    Curr(i) = currentNewton(IL,0,Is,Volt(i),Rs,y,Temp,Rsh);
+end
 end
